@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ILoveYou</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffeef2 50%, #ffe4e9 100%);
+            font-family: 'Georgia', serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background flowers */
+        .bg-flowers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 55px;
+            opacity: 0.4;
+            animation: float 7s ease-in-out infinite;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .flower:nth-child(1) { top: 5%; left: 3%; animation-delay: 0s; }
+        .flower:nth-child(2) { top: 12%; right: 5%; animation-delay: 1s; font-size: 50px; }
+        .flower:nth-child(3) { top: 50%; left: 2%; animation-delay: 2s; font-size: 60px; }
+        .flower:nth-child(4) { bottom: 12%; right: 3%; animation-delay: 0.5s; }
+        .flower:nth-child(5) { top: 30%; left: 5%; animation-delay: 1.5s; font-size: 45px; }
+        .flower:nth-child(6) { bottom: 20%; left: 8%; animation-delay: 2.5s; font-size: 53px; }
+        .flower:nth-child(7) { top: 60%; right: 6%; animation-delay: 3s; }
+        .flower:nth-child(8) { top: 8%; left: 18%; animation-delay: 1.2s; font-size: 43px; }
+        .flower:nth-child(9) { bottom: 8%; right: 12%; animation-delay: 2.2s; font-size: 57px; }
+        .flower:nth-child(10) { top: 40%; right: 2%; animation-delay: 0.8s; font-size: 47px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Floating elements - hearts and text */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .heart-float {
+            position: absolute;
+            bottom: -80px;
+            color: rgba(233, 30, 99, 0.5);
+            font-size: 28px;
+            animation: rise 8s linear infinite;
+            filter: drop-shadow(0 2px 6px rgba(233, 30, 99, 0.2));
+        }
+
+        .floating-text {
+            position: absolute;
+            bottom: -80px;
+            font-family: 'Pacifico', cursive;
+            font-size: 24px;
+            color: rgba(244, 143, 177, 0.7);
+            animation: rise 10s linear infinite;
+            filter: drop-shadow(0 2px 6px rgba(244, 143, 177, 0.3));
+            white-space: nowrap;
+        }
+
+        /* Heart positions */
+        .heart-float:nth-child(1) { left: 3%; animation-delay: 0s; font-size: 32px; }
+        .heart-float:nth-child(2) { left: 8%; animation-delay: 0.8s; font-size: 26px; }
+        .heart-float:nth-child(3) { left: 13%; animation-delay: 2.2s; font-size: 30px; }
+        .heart-float:nth-child(4) { left: 18%; animation-delay: 0.4s; font-size: 36px; }
+        .heart-float:nth-child(5) { left: 23%; animation-delay: 3s; font-size: 28px; }
+        .heart-float:nth-child(6) { left: 28%; animation-delay: 1.5s; font-size: 32px; }
+        .heart-float:nth-child(7) { left: 33%; animation-delay: 4s; font-size: 24px; }
+        .heart-float:nth-child(8) { left: 38%; animation-delay: 2s; font-size: 34px; }
+        .heart-float:nth-child(9) { left: 43%; animation-delay: 0.6s; font-size: 27px; }
+        .heart-float:nth-child(10) { left: 48%; animation-delay: 3.5s; font-size: 31px; }
+        .heart-float:nth-child(11) { left: 53%; animation-delay: 1.2s; font-size: 29px; }
+        .heart-float:nth-child(12) { left: 58%; animation-delay: 4.5s; font-size: 33px; }
+        .heart-float:nth-child(13) { left: 63%; animation-delay: 2.8s; font-size: 25px; }
+        .heart-float:nth-child(14) { left: 68%; animation-delay: 0.9s; font-size: 35px; }
+        .heart-float:nth-child(15) { left: 73%; animation-delay: 3.8s; font-size: 30px; }
+        .heart-float:nth-child(16) { left: 78%; animation-delay: 1.8s; font-size: 28px; }
+        .heart-float:nth-child(17) { left: 83%; animation-delay: 5s; font-size: 32px; }
+        .heart-float:nth-child(18) { left: 88%; animation-delay: 2.5s; font-size: 26px; }
+        .heart-float:nth-child(19) { left: 93%; animation-delay: 0.7s; font-size: 34px; }
+        .heart-float:nth-child(20) { left: 97%; animation-delay: 4.2s; font-size: 29px; }
+
+        /* Floating text positions */
+        .floating-text:nth-child(21) { left: 5%; animation-delay: 1s; }
+        .floating-text:nth-child(22) { left: 25%; animation-delay: 3s; }
+        .floating-text:nth-child(23) { left: 45%; animation-delay: 5s; }
+        .floating-text:nth-child(24) { left: 65%; animation-delay: 2s; }
+        .floating-text:nth-child(25) { left: 85%; animation-delay: 4s; }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-130vh) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .card-container {
+            position: relative;
+            width: 85vw;
+            max-width: 850px;
+            height: 480px;
+            z-index: 2;
+        }
+
+        /* Card title */
+        .card-title {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Pacifico', cursive;
+            font-size: 2rem;
+            color: #e91e63;
+            opacity: 0;
+            z-index: 4;
+            text-shadow: 2px 2px 8px rgba(233, 30, 99, 0.2);
+            transition: opacity 1s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .card-title.show {
+            opacity: 1;
+        }
+
+        /* Message layer */
+        .message-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, rgba(255, 248, 250, 0.98) 0%, rgba(255, 240, 243, 0.98) 50%, rgba(255, 232, 237, 0.98) 100%);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 65px;
+            box-shadow: 
+                0 15px 40px rgba(255, 179, 198, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .message-layer.revealed {
+            opacity: 1;
+            transition: opacity 1.2s ease-in;
+            pointer-events: all;
+        }
+
+        .hidden-message {
+            font-family: 'Pacifico', cursive;
+            font-size: 16px;
+            color: #ad1457;
+            font-weight: 400;
+            line-height: 2;
+            text-align: center;
+            padding: 20px 45px 35px;
+            max-height: calc(100% - 70px);
+            overflow-y: auto;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            letter-spacing: 0.5px;
+        }
+
+        /* Canvas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px;
+            cursor: crosshair;
+            touch-action: none;
+            z-index: 3;
+            box-shadow: 
+                0 15px 40px rgba(255, 179, 198, 0.2);
+        }
+
+        /* Scratch Coin */
+        .scratch-coin {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #ffd700 0%, #ffed4e 30%, #ffd700 50%, #ffed4e 70%, #ffd700 100%);
+            border-radius: 50%;
+            box-shadow: 
+                0 5px 15px rgba(0,0,0,0.2),
+                inset 0 -3px 10px rgba(0,0,0,0.1),
+                inset 0 3px 10px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Pacifico', cursive;
+            cursor: grab;
+            z-index: 50;
+            transition: transform 0.1s;
+            pointer-events: all;
+            border: 3px solid #ffcc00;
+        }
+
+        .scratch-coin::before {
+            content: '';
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border: 2px dashed rgba(255,255,255,0.6);
+            border-radius: 50%;
+        }
+
+        .scratch-coin:active {
+            cursor: grabbing;
+            transform: scale(0.95);
+        }
+
+        .coin-text {
+            font-size: 11px;
+            color: #d4a017;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+            z-index: 1;
+        }
+
+        .coin-emoji {
+            font-size: 24px;
+            margin-bottom: 2px;
+            z-index: 1;
+        }
+
+        .coin-instruction {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            color: #c2185b;
+            white-space: nowrap;
+            font-family: 'Playfair Display', serif;
+            opacity: 0.7;
+        }
+
+        /* Flame layer */
+        .flame-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .flame-particle {
+            position: absolute;
+            width: 14px;
+            height: 18px;
+            background: linear-gradient(to top, 
+                #ffab91 0%, 
+                #ffccbc 35%, 
+                #ffe0b2 70%, 
+                transparent 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            pointer-events: none;
+            opacity: 0.55;
+            animation: flame-flicker 0.7s ease-out forwards;
+        }
+
+        @keyframes flame-flicker {
+            0% { 
+                transform: scale(0.3) rotate(-5deg); 
+                opacity: 0.65;
+            }
+            40% { 
+                transform: scale(0.85) rotate(3deg); 
+                opacity: 0.55;
+            }
+            100% { 
+                transform: scale(0.35) rotate(-2deg); 
+                opacity: 0;
+            }
+        }
+
+        .ember {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #ffab91;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.45;
+            animation: ember-rise 0.9s ease-out forwards;
+        }
+
+        @keyframes ember-rise {
+            0% { 
+                transform: translateY(0) scale(1); 
+                opacity: 0.45;
+            }
+            100% { 
+                transform: translateY(-25px) scale(0.15); 
+                opacity: 0;
+            }
+        }
+
+        .instruction {
+            position: absolute;
+            bottom: -55px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #c2185b;
+            font-size: 14px;
+            opacity: 0.65;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .progress-bar {
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 3px;
+            background: rgba(194, 24, 89, 0.12);
+            border-radius: 2px;
+            z-index: 5;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .progress-bar.visible {
+            opacity: 1;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #f48fb1, #f06292);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        /* Start button */
+        .start-btn {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #f8bbd9, #f48fb1);
+            color: white;
+            border: none;
+            padding: 18px 36px;
+            border-radius: 50px;
+            font-size: 17px;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 10px 30px rgba(244, 143, 177, 0.3);
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .start-btn:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+            box-shadow: 0 15px 40px rgba(244, 143, 177, 0.4);
+            background: linear-gradient(135deg, #f48fb1, #f06292);
+        }
+
+        .start-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Easter Egg Modal */
+        .easter-egg-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 243, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .easter-egg-modal.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .easter-egg-card {
+            background: linear-gradient(145deg, #fff8fa 0%, #ffe4ed 50%, #ffd6e0 100%);
+            padding: 50px 60px;
+            border-radius: 25px;
+            box-shadow: 
+                0 20px 60px rgba(255, 179, 198, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 500px;
+            transform: scale(0.8);
+            transition: transform 0.5s;
+        }
+
+        .easter-egg-modal.show .easter-egg-card {
+            transform: scale(1);
+        }
+
+        .easter-egg-title {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.5rem;
+            color: #e91e63;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+        }
+
+        .easter-egg-content {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.4rem;
+            color: #ad1457;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        .perk-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 25px;
+            margin: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(255, 179, 198, 0.2);
+        }
+
+        .perk-number {
+            font-size: 2rem;
+            color: #e91e63;
+            margin-right: 10px;
+        }
+
+        .close-easter-egg {
+            background: linear-gradient(135deg, #f48fb1, #e91e63);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-family: 'Pacifico', cursive;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .close-easter-egg:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+        }
+
+        /* Claimed message */
+        .claimed-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, #fff8fa 0%, #ffe4ed 100%);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 179, 198, 0.5);
+            text-align: center;
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s;
+        }
+
+        .claimed-message.show {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .claimed-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.8rem;
+            color: #e91e63;
+            line-height: 1.8;
+        }
+
+        .claimed-emoji {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* Scrollbar styling */
+        .hidden-message::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .hidden-message::-webkit-scrollbar-track {
+            background: rgba(244, 143, 177, 0.1);
+            border-radius: 3px;
+        }
+
+        .hidden-message::-webkit-scrollbar-thumb {
+            background: rgba(244, 143, 177, 0.3);
+            border-radius: 3px;
+        }
+
+        .hidden-message::-webkit-scrollbar-thumb:hover {
+            background: rgba(244, 143, 177, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <!-- Background decorations -->
+    <div class="bg-flowers">
+        <div class="flower">🌸</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌺</div>
+        <div class="flower">🌷</div>
+        <div class="flower">🌸</div>
+        <div class="flower">🌹</div>
+        <div class="flower">🌺</div>
+    </div>
+
+    <!-- Floating hearts and text -->
+    <div class="floating-elements">
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💝</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💝</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💝</div>
+        <div class="heart-float">💕</div>
+        <div class="heart-float">💖</div>
+        <div class="heart-float">💗</div>
+        <div class="heart-float">💓</div>
+        <div class="heart-float">💝</div>
+        
+        <div class="floating-text">Happy Valentines Day!!</div>
+        <div class="floating-text">Happy Valentines Day!!</div>
+        <div class="floating-text">Happy Valentines Day!!</div>
+        <div class="floating-text">Happy Valentines Day!!</div>
+        <div class="floating-text">Happy Valentines Day!!</div>
+    </div>
+
+    <!-- Scratch Coin -->
+    <div class="scratch-coin" id="scratchCoin" style="display: none;">
+        <div class="coin-emoji">💝</div>
+        <div class="coin-text">Scratch</div>
+        <div class="coin-instruction">Drag to reveal</div>
+    </div>
+
+    <button class="start-btn" id="startBtn">✨ Scratch to Reveal ✨</button>
+
+    <div class="card-container" id="cardContainer">
+        <div class="message-layer" id="messageLayer">
+            <div class="card-title" id="cardTitle">Happy Valentines Day!!!</div>
+            <div class="hidden-message">
+                Heyy babyyy :)))) I love youuuu soooo muchhhhhh heheeee. Ajke bole valentines day xdd ewwww kotto cringe. I had a feeling we wouldn't be able to meet today so i made this for youu :)) I love youu etooogulaaaa *huggiess* I will keep this short because I dont want to run out of ideas for our anniversary ukuk xdd. Lately I have been feeling well, and I cannot tell you why, my body and my heart won't let me :(( and I know it's making you worry etoogulaa and sad etoogulaaa, but trust me it's just an issue from my end and hopefully i will get over it hopefully. :(( I love youuu sooo muchhh. *ETOOGULAAA KISSIE ON THE 4HEADDD* heheeee. *yumnomnomnom* I hope we get to meet soon :)) *gives u etoogula flowers*
+            </div>
+        </div>
+        <canvas id="paperCanvas"></canvas>
+        <div class="flame-layer" id="flameLayer"></div>
+        <div class="progress-bar" id="progressBar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+    <div class="instruction" id="instruction">Use the coin to scratch and reveal your message</div>
+
+    <!-- Easter Egg Modal -->
+    <div class="easter-egg-modal" id="easterEggModal">
+        <div class="easter-egg-card">
+            <div class="easter-egg-title">🎉 Surprise! 🎉</div>
+            <div class="easter-egg-content">
+                <div class="perk-item">
+                    <span class="perk-number">1.</span>
+                    Free Kissies 💋<br>
+                    <small>(Applicable 5 times)</small>
+                </div>
+                <div class="perk-item">
+                    <span class="perk-number">2.</span>
+                    Free Fingers 🤌<br>
+                    <small>(Applicable 1 time for as long as you want)</small>
+                </div>
+            </div>
+            <button class="close-easter-egg" id="closeEasterEgg">Claim Your Rewards 💕</button>
+        </div>
+    </div>
+
+    <!-- Claimed Message -->
+    <div class="claimed-message" id="claimedMessage">
+        <div class="claimed-emoji">📸✨</div>
+            <div class="claimed-text">
+            Send me a screenshot when you want to use it 😜
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('paperCanvas');
+        const ctx = canvas.getContext('2d');
+        const container = document.getElementById('cardContainer');
+        const flameLayer = document.getElementById('flameLayer');
+        const messageLayer = document.getElementById('messageLayer');
+        const cardTitle = document.getElementById('cardTitle');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const instruction = document.getElementById('instruction');
+        const startBtn = document.getElementById('startBtn');
+        const scratchCoin = document.getElementById('scratchCoin');
+        const easterEggModal = document.getElementById('easterEggModal');
+        const closeEasterEgg = document.getElementById('closeEasterEgg');
+        const claimedMessage = document.getElementById('claimedMessage');
+        
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let isMusicPlaying = false;
+        let audioContext = null;
+        let musicInterval = null;
+        let easterEggShown = false;
+        let coinX = 0;
+        let coinY = 0;
+        
+        // SPICY LATIN MUSIC - Salsa/Bossa Nova style with rich piano
+        function playVibeyMusic() {
+            if (isMusicPlaying) return;
+            isMusicPlaying = true;
+            
+            try {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                const playLatinGroove = () => {
+                    const now = audioContext.currentTime;
+                    const beat = 0.55; // Slightly slower for better sustain
+                    
+                    // Bossa Nova style progression: Am - G - F - E7
+                    const chords = [
+                        // A minor 7 (jazzy)
+                        [
+                            { freq: 110.00, vol: 0.018 },  // A2
+                            { freq: 220.00, vol: 0.015 }, // A3
+                            { freq: 261.63, vol: 0.015 }, // C4
+                            { freq: 329.63, vol: 0.015 }, // E4
+                            { freq: 493.88, vol: 0.012 }, // B4 (7th)
+                        ],
+                        // G major 7
+                        [
+                            { freq: 98.00, vol: 0.018 },   // G2
+                            { freq: 196.00, vol: 0.015 }, // G3
+                            { freq: 246.94, vol: 0.015 }, // B3
+                            { freq: 293.66, vol: 0.015 }, // D4
+                            { freq: 392.00, vol: 0.012 }, // G4
+                        ],
+                        // F major 7
+                        [
+                            { freq: 87.31, vol: 0.018 },   // F2
+                            { freq: 174.61, vol: 0.015 }, // F3
+                            { freq: 220.00, vol: 0.015 }, // A3
+                            { freq: 261.63, vol: 0.015 }, // C4
+                            { freq: 349.23, vol: 0.012 }, // F4
+                        ],
+                        // E7 (dominant - spicy!)
+                        [
+                            { freq: 82.41, vol: 0.018 },   // E2
+                            { freq: 164.81, vol: 0.015 }, // E3
+                            { freq: 207.65, vol: 0.015 }, // G#3
+                            { freq: 246.94, vol: 0.015 }, // B3
+                            { freq: 329.63, vol: 0.015 }, // E4
+                            { freq: 415.30, vol: 0.010 }, // Ab4 (7th - spicy!)
+                        ],
+                    ];
+                    
+                    // Spicy syncopated melody
+                    const melody = [
+                        { freq: 523.25, time: 0, duration: 0.4 },           // C5
+                        { freq: 587.33, time: beat * 0.7, duration: 0.35 }, // D5
+                        { freq: 659.25, time: beat * 1.3, duration: 0.5 },  // E5
+                        { freq: 783.99, time: beat * 2.0, duration: 0.6 },  // G5
+                        { freq: 659.25, time: beat * 3.0, duration: 0.35 }, // E5
+                        { freq: 587.33, time: beat * 3.6, duration: 0.35 }, // D5
+                        { freq: 523.25, time: beat * 4.2, duration: 0.8 },  // C5 (held)
+                        { freq: 880.00, time: beat * 5.5, duration: 0.5 },  // A5
+                        { freq: 783.99, time: beat * 6.3, duration: 0.5 },  // G5
+                        { freq: 659.25, time: beat * 7.2, duration: 1.0 },  // E5
+                    ];
+                    
+                    const currentChordIndex = Math.floor(Date.now() / 5500) % 4;
+                    const currentChord = chords[currentChordIndex];
+                    
+                    // Play rich piano-style chord with multiple harmonics
+                    currentChord.forEach(({ freq, vol }, noteIndex) => {
+                        // Create 3 oscillators per note for rich piano sound
+                        const harmonics = [
+                            { type: 'triangle', detune: 0, volMult: 0.6 },      // Fundamental
+                            { type: 'sine', detune: 3, volMult: 0.25 },         // Slight detune for warmth
+                            { type: 'sine', detune: -3, volMult: 0.25 },        // Slight detune for warmth
+                        ];
+                        
+                        harmonics.forEach((harmonic, hIndex) => {
+                            const osc = audioContext.createOscillator();
+                            const gain = audioContext.createGain();
+                            
+                            osc.type = harmonic.type;
+                            osc.frequency.value = freq;
+                            osc.detune.value = harmonic.detune;
+                            
+                            // Piano-style ADSR envelope
+                            const attack = 0.02;
+                            const decay = 0.3;
+                            const sustain = vol * harmonic.volMult * 0.7;
+                            const release = 2.5;
+                            
+                            gain.gain.setValueAtTime(0, now);
+                            gain.gain.linearRampToValueAtTime(vol * harmonic.volMult, now + attack);
+                            gain.gain.exponentialRampToValueAtTime(sustain, now + attack + decay);
+                            gain.gain.setValueAtTime(sustain, now + 4.5);
+                            gain.gain.exponentialRampToValueAtTime(0.001, now + 4.5 + release);
+                            
+                            // Low pass filter for piano-like tone
+                            const filter = audioContext.createBiquadFilter();
+                            filter.type = 'lowpass';
+                            filter.frequency.value = 3500;
+                            filter.Q.value = 0.5;
+                            
+                            osc.connect(filter);
+                            filter.connect(gain);
+                            gain.connect(audioContext.destination);
+                            
+                            osc.start(now);
+                            osc.stop(now + 7);
+                        });
+                    });
+                    
+                    // Play melody with piano-like sustain
+                    melody.forEach(({ freq, time, duration }) => {
+                        // Create rich tone for melody too
+                        const harmonics = [
+                            { type: 'triangle', detune: 0, volMult: 0.7 },
+                            { type: 'sine', detune: 5, volMult: 0.2 },
+                            { type: 'sine', detune: -5, volMult: 0.2 },
+                        ];
+                        
+                        harmonics.forEach(harmonic => {
+                            const osc = audioContext.createOscillator();
+                            const gain = audioContext.createGain();
+                            
+                            osc.type = harmonic.type;
+                            osc.frequency.value = freq;
+                            osc.detune.value = harmonic.detune;
+                            
+                            // Better envelope for melody
+                            const noteVol = 0.025 * harmonic.volMult;
+                            gain.gain.setValueAtTime(0, now + time);
+                            gain.gain.linearRampToValueAtTime(noteVol, now + time + 0.03);
+                            gain.gain.setValueAtTime(noteVol * 0.8, now + time + duration * 0.5);
+                            gain.gain.exponentialRampToValueAtTime(0.002, now + time + duration + 0.5);
+                            
+                            const filter = audioContext.createBiquadFilter();
+                            filter.type = 'lowpass';
+                            filter.frequency.value = 4000;
+                            
+                            osc.connect(filter);
+                            filter.connect(gain);
+                            gain.connect(audioContext.destination);
+                            
+                            osc.start(now + time);
+                            osc.stop(now + time + duration + 0.6);
+                        });
+                    });
+                    
+                    // Sustain pedal effect - let chords ring into each other
+                    if (currentChordIndex > 0) {
+                        const prevChord = chords[(currentChordIndex - 1) % 4];
+                        // Add subtle sustained notes from previous chord
+                        prevChord.slice(0, 2).forEach(({ freq, vol }) => {
+                            const osc = audioContext.createOscillator();
+                            const gain = audioContext.createGain();
+                            
+                            osc.type = 'sine';
+                            osc.frequency.value = freq;
+                            
+                            gain.gain.setValueAtTime(vol * 0.3, now);
+                            gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+                            
+                            osc.connect(gain);
+                            gain.connect(audioContext.destination);
+                            
+                            osc.start(now);
+                            osc.stop(now + 2);
+                        });
+                    }
+                    
+                    // Bossa Nova style percussion (soft)
+                    // Clave rhythm
+                    const clavePattern = [0, 1.5, 2.5, 3.5];
+                    clavePattern.forEach(time => {
+                        const claveTime = time * beat;
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+                        
+                        osc.type = 'square';
+                        osc.frequency.value = 1200;
+                        
+                        gain.gain.setValueAtTime(0.008, now + claveTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, now + claveTime + 0.08);
+                        
+                        const filter = audioContext.createBiquadFilter();
+                        filter.type = 'bandpass';
+                        filter.frequency.value = 2500;
+                        filter.Q.value = 10;
+                        
+                        osc.connect(filter);
+                        filter.connect(gain);
+                        gain.connect(audioContext.destination);
+                        
+                        osc.start(now + claveTime);
+                        osc.stop(now + claveTime + 0.1);
+                    });
+                    
+                    // Shaker on off-beats
+                    for (let i = 0; i < 16; i++) {
+                        if (i % 2 !== 0) {
+                            const shakerTime = i * beat * 0.5;
+                            const noise = audioContext.createBufferSource();
+                            const bufferSize = audioContext.sampleRate * 0.02;
+                            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                            const data = buffer.getChannelData(0);
+                            
+                            for (let j = 0; j < bufferSize; j++) {
+                                data[j] = (Math.random() - 0.5);
+                            }
+                            
+                            noise.buffer = buffer;
+                            
+                            const filter = audioContext.createBiquadFilter();
+                            filter.type = 'highpass';
+                            filter.frequency.value = 6000;
+                            
+                            const gain = audioContext.createGain();
+                            gain.gain.setValueAtTime(0.004, now + shakerTime);
+                            gain.gain.exponentialRampToValueAtTime(0.0005, now + shakerTime + 0.02);
+                            
+                            noise.connect(filter);
+                            filter.connect(gain);
+                            gain.connect(audioContext.destination);
+                            
+                            noise.start(now + shakerTime);
+                        }
+                    }
+                    
+                    // Bass line with Latin groove
+                    const bassPattern = [0, 1.5, 3];
+                    bassPattern.forEach(time => {
+                        const bassTime = time * beat;
+                        const osc = audioContext.createOscillator();
+                        const gain = audioContext.createGain();
+                        
+                        osc.type = 'triangle';
+                        osc.frequency.value = currentChord[0].freq * 0.5;
+                        
+                        gain.gain.setValueAtTime(0.018, now + bassTime);
+                        gain.gain.exponentialRampToValueAtTime(0.003, now + bassTime + 0.4);
+                        
+                        osc.connect(gain);
+                        gain.connect(audioContext.destination);
+                        
+                        osc.start(now + bassTime);
+                        osc.stop(now + bassTime + 0.5);
+                    });
+                };
+                
+                playLatinGroove();
+                musicInterval = setInterval(playLatinGroove, 5000);
+                
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        // Soft scratch sound
+        function playScratchSound() {
+            try {
+                if (!audioContext) return;
+                
+                const bufferSize = audioContext.sampleRate * 0.15;
+                const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const data = buffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    const noise = (Math.random() * 2 - 1) * 0.15;
+                    data[i] = noise * Math.exp(-i / (audioContext.sampleRate * 0.1));
+                }
+                
+                const noise = audioContext.createBufferSource();
+                noise.buffer = buffer;
+                
+                const filter = audioContext.createBiquadFilter();
+                filter.type = 'bandpass';
+                filter.frequency.value = 800;
+                filter.Q.value = 0.5;
+                
+                const gainNode = audioContext.createGain();
+                gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
+                
+                noise.connect(filter);
+                filter.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                noise.start();
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        // Set canvas size
+        function resizeCanvas() {
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            drawPaper();
+        }
+        
+        // Card flowers positions
+        const cardFlowers = [
+            { x: 0.06, y: 0.08, emoji: '🌸', size: 36 },
+            { x: 0.92, y: 0.10, emoji: '🌺', size: 32 },
+            { x: 0.04, y: 0.90, emoji: '🌷', size: 34 },
+            { x: 0.93, y: 0.88, emoji: '🌹', size: 36 },
+            { x: 0.03, y: 0.48, emoji: '💐', size: 30 },
+            { x: 0.94, y: 0.46, emoji: '🌼', size: 32 },
+            { x: 0.12, y: 0.15, emoji: '🌻', size: 28 },
+            { x: 0.85, y: 0.78, emoji: '🏵️', size: 30 },
+            { x: 0.18, y: 0.82, emoji: '🌺', size: 28 },
+            { x: 0.80, y: 0.20, emoji: '🌸', size: 30 },
+        ];
+        
+        function drawPaper() {
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, '#f0e0d0');
+            gradient.addColorStop(0.3, '#e5d4c0');
+            gradient.addColorStop(0.5, '#dcc8b0');
+            gradient.addColorStop(0.7, '#e5d4c0');
+            gradient.addColorStop(1, '#f0e0d0');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const noise = (Math.random() - 0.5) * 18;
+                data[i] = Math.min(255, Math.max(0, data[i] + noise));
+                data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + noise));
+                data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + noise));
+            }
+            ctx.putImageData(imageData, 0, 0);
+            
+            drawCoffeeStain(canvas.width * 0.18, canvas.height * 0.20, 65, -0.3);
+            drawCoffeeStain(canvas.width * 0.80, canvas.height * 0.75, 55, 0.5);
+            drawCoffeeStain(canvas.width * 0.32, canvas.height * 0.88, 45, -0.2);
+            drawCoffeeStain(canvas.width * 0.72, canvas.height * 0.25, 50, 0.3);
+            
+            ctx.strokeStyle = 'rgba(139, 90, 43, 0.1)';
+            ctx.lineWidth = 1;
+            for (let y = 0; y < canvas.height; y += 3) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y + (Math.random() - 0.5) * 2);
+                ctx.stroke();
+            }
+            
+            ctx.font = '32px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            cardFlowers.forEach(flower => {
+                ctx.fillText(flower.emoji, canvas.width * flower.x, canvas.height * flower.y);
+            });
+            
+            ctx.save();
+            ctx.fillStyle = 'rgba(107, 68, 35, 0.45)';
+            ctx.font = 'italic 19px "Playfair Display", serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✨ Use the coin to scratch ✨', canvas.width / 2, canvas.height / 2);
+            ctx.restore();
+        }
+        
+        function drawCoffeeStain(x, y, size, rotation) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rotation);
+            
+            const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
+            gradient.addColorStop(0, 'rgba(139, 90, 43, 0.24)');
+            gradient.addColorStop(0.4, 'rgba(139, 90, 43, 0.16)');
+            gradient.addColorStop(0.7, 'rgba(139, 90, 43, 0.08)');
+            gradient.addColorStop(1, 'transparent');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.ellipse(0, 0, size, size * 0.8, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+        
+        function checkBurnProgress() {
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            let transparentCount = 0;
+            
+            for (let i = 3; i < data.length; i += 40) {
+                if (data[i] < 50) transparentCount++;
+            }
+            
+            const progress = (transparentCount / (data.length / 40)) * 100;
+            progressFill.style.width = progress + '%';
+            
+            if (progress > 20 && !messageLayer.classList.contains('revealed')) {
+                messageLayer.classList.add('revealed');
+                cardTitle.classList.add('show');
+                progressBar.classList.add('visible');
+            }
+            
+            if (progress > 60) {
+                instruction.textContent = '💖 Your love letter is revealed! 💖';
+                instruction.style.opacity = '0.9';
+            }
+            
+            if (progress >= 95 && !easterEggShown) {
+                easterEggShown = true;
+                setTimeout(() => {
+                    easterEggModal.classList.add('show');
+                }, 800);
+            }
+        }
+        
+        function scratch(x, y) {
+            ctx.globalCompositeOperation = 'destination-out';
+            
+            const scratchRadius = 28;
+            const points = 8;
+            
+            for (let i = 0; i < points; i++) {
+                const angle = (i / points) * Math.PI * 2;
+                const variance = 0.7 + Math.random() * 0.35;
+                const r = scratchRadius * variance;
+                const bx = x + Math.cos(angle) * r;
+                const by = y + Math.sin(angle) * r;
+                
+                const scratchGradient = ctx.createRadialGradient(bx, by, 0, bx, by, r * 0.8);
+                scratchGradient.addColorStop(0, 'rgba(0, 0, 0, 1)');
+                scratchGradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.8)');
+                scratchGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                
+                ctx.fillStyle = scratchGradient;
+                ctx.beginPath();
+                ctx.arc(bx, by, r * 0.8, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            ctx.globalCompositeOperation = 'source-over';
+            
+            if (Math.random() < 0.05) {
+                checkBurnProgress();
+            }
+        }
+        
+        function createSparkles(x, y) {
+            if (Math.random() < 0.7) {
+                const sparkle = document.createElement('div');
+                sparkle.style.cssText = `
+                    position: absolute;
+                    width: 6px;
+                    height: 6px;
+                    background: radial-gradient(circle, #ffd700, transparent);
+                    border-radius: 50%;
+                    left: ${x}px;
+                    top: ${y}px;
+                    pointer-events: none;
+                    animation: sparkle-fade 0.6s ease-out forwards;
+                `;
+                flameLayer.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 600);
+            }
+        }
+        
+        function updateCoinPosition(x, y) {
+            coinX = x - 35;
+            coinY = y - 35;
+            scratchCoin.style.left = coinX + 'px';
+            scratchCoin.style.top = coinY + 'px';
+        }
+        
+        // Start button handler
+        startBtn.addEventListener('click', () => {
+            startBtn.classList.add('hidden');
+            scratchCoin.style.display = 'flex';
+            const rect = container.getBoundingClientRect();
+            updateCoinPosition(rect.right + 50, rect.top + rect.height / 2);
+            playVibeyMusic();
+        });
+        
+        let isDraggingCoin = false;
+        
+        scratchCoin.addEventListener('mousedown', (e) => {
+            isDraggingCoin = true;
+            scratchCoin.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDraggingCoin) return;
+            
+            updateCoinPosition(e.clientX, e.clientY);
+            
+            const rect = canvas.getBoundingClientRect();
+            if (e.clientX >= rect.left && e.clientX <= rect.right && 
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                scratch(x, y);
+                createSparkles(x, y);
+                playScratchSound();
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDraggingCoin = false;
+            scratchCoin.style.cursor = 'grab';
+        });
+        
+        scratchCoin.addEventListener('touchstart', (e) => {
+            isDraggingCoin = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (!isDraggingCoin) return;
+            
+            const touch = e.touches[0];
+            updateCoinPosition(touch.clientX, touch.clientY);
+            
+            const rect = canvas.getBoundingClientRect();
+            if (touch.clientX >= rect.left && touch.clientX <= rect.right && 
+                touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+                
+                const x = touch.clientX - rect.left;
+                const y = touch.clientY - rect.top;
+                
+                scratch(x, y);
+                createSparkles(x, y);
+                playScratchSound();
+            }
+        });
+        
+        document.addEventListener('touchend', () => {
+            isDraggingCoin = false;
+        });
+        
+        closeEasterEgg.addEventListener('click', () => {
+            easterEggModal.classList.remove('show');
+            setTimeout(() => {
+                claimedMessage.classList.add('show');
+            }, 300);
+        });
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle-fade {
+                0% { transform: scale(1); opacity: 1; }
+                100% { transform: scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+    </script>
+</body>
+</html>
